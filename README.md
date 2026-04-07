@@ -1,11 +1,11 @@
-# microfrontend-shell
+# pe-mfe-shell
 
 The container application for a React microfrontend ecosystem. Handles auth bootstrapping, renders the shared Header and Sidebar, and lazy-loads remote MFE apps via Webpack Module Federation.
 
 ## Prerequisites
 
-- `mfe-dashboard` running at `http://localhost:3001`
-- `mfe-job-search` running at `http://localhost:3002`
+- `pe-mfe-dashboard` running at `http://localhost:3001`
+- `pe-mfe-job-search` running at `http://localhost:3002`
 - Go backend running at `http://localhost:8080`
 - All MFEs must be running before starting the shell
 
@@ -25,5 +25,5 @@ pnpm start   # dev server on port 3000
 
 ## Notes
 
-- Shared UI, auth, and user state come from `@bka-stuff/mfe-utils` (imported by branch)
+- Shared UI, auth, and user state come from `@bka-stuff/pe-mfe-utils` (imported by branch)
 - To add a new MFE: register the remote in `webpack.config.ts`, add a route in `src/utils/routeUtils.ts`, and declare the module in `src/types/remotes.d.ts`
