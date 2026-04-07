@@ -1,0 +1,49 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["dom", "esnext"],
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "isolatedModules": false,
+    "baseUrl": "./",
+    "preserveSymlinks": false,
+    
+    "paths": {
+      "mfe-dashboard/*": ["./@types/mfe-dashboard/*"],
+      "mfe-job-search/*": ["./@types/mfe-job-search/*"],
+      "axios": ["./node_modules/axios"],
+      "react": ["./node_modules/react"],
+      "react-dom": ["./node_modules/react-dom"]
+    },
+    "types": ["node"]
+  },
+  "exclude": [
+    "__mocks__",
+    "node_modules",
+    "build",
+    "dist",
+    "coverage",
+    "ci-scripts"
+  ],
+  "include": [
+    "build-utils/**/*.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "eslint.config.mjs",
+    "webpack.config.ts",
+    "babel.config.js",
+    "release.config.js",
+    "jest.setup.js"
+  ]
+}

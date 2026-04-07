@@ -1,0 +1,21 @@
+node_modules
+.idea
+.DS_Store
+lib/
+out/
+.DS_Store
+*.iml
+*.log
+build/
+.vscode
+env
+stats.json
+.ssh
+@mf-types
+pnpm-lock.yaml
+__mocks__/ui_connect_llm
+# testing
+/harness/coverage
+dist/
+NOTES.MD
+NOTES.md
