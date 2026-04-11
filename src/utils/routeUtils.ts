@@ -48,6 +48,10 @@ export const routes: RouteDefinition[] = [
     ...buildLazyImports(() => import('pe-mfe-job-search/App'), MINIMUM_LOAD_DELAY),
   },
   {
+    path: '/budget/*',
+    ...buildLazyImports(() => import('pe-mfe-budget/App'), MINIMUM_LOAD_DELAY),
+  },
+  {
     path: '/dashboard/*',
     ...buildLazyImports(() => import('pe-mfe-dashboard/App'), MINIMUM_LOAD_DELAY),
   },

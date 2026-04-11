@@ -20,9 +20,6 @@
     "paths": {
       "mfe-dashboard/*": ["./@types/mfe-dashboard/*"],
       "mfe-job-search/*": ["./@types/mfe-job-search/*"],
-      "axios": ["./node_modules/axios"],
-      "react": ["./node_modules/react"],
-      "react-dom": ["./node_modules/react-dom"]
     },
     "types": ["node"]
   },
