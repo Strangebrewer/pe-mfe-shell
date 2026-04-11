@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from "react";
-import { Modal, Button } from "@bka-stuff/mfe-utils";
+import { Modal, Button } from "@bka-stuff/pe-mfe-utils";
 import { useLogin } from '../hooks/userHooks';
 
 type LoginModalProps = {

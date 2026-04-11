@@ -3,7 +3,7 @@ import { BaseRouter } from './BaseRouter';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import { useGetCurrentUser } from './hooks/userHooks';
-import { useUserStore } from '@bka-stuff/mfe-utils';
+import { useUserStore } from '@bka-stuff/pe-mfe-utils';
 
 import { authClient } from './utils/authClient';
 import { MINIMUM_LOAD_DELAY } from './utils/constants';

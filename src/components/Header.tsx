@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { TransparentButton, useUserStore } from '@bka-stuff/mfe-utils';
+import { TransparentButton, useUserStore } from '@bka-stuff/pe-mfe-utils';
 
 import LoginModal from './LoginModal';
 import { useLogout } from '../hooks/userHooks';

@@ -1,6 +1,6 @@
 import api from '../api';
 import { authClient } from '../utils/authClient';
-import { useUserStore } from '@bka-stuff/mfe-utils';
+import { useUserStore } from '@bka-stuff/pe-mfe-utils';
 
 export const useGetCurrentUser = () => {
   const { setUser } = useUserStore();
