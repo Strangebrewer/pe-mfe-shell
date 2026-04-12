@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
       </div>
 
       <div>
-        <button className='sidebar-btn' onClick={() => navigate('/job-search')}>
+        <button className='sidebar-btn' onClick={() => navigate('/job-search/jobs')}>
           <i className='fas fa-search-plus --candy' />
         </button>
       </div>
