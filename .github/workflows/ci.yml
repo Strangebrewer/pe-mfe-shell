@@ -62,6 +62,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
+          AUTH_URL: ${{ vars.AUTH_URL }}
           MFE_DASHBOARD_URL: ${{ vars.MFE_DASHBOARD_URL }}
           MFE_JOB_SEARCH_URL: ${{ vars.MFE_JOB_SEARCH_URL }}
           MFE_BUDGET_URL: ${{ vars.MFE_BUDGET_URL }}
@@ -102,6 +103,7 @@ jobs:
       - name: Build
         run: pnpm run build
         env:
+          AUTH_URL: ${{ vars.AUTH_URL }}
           MFE_DASHBOARD_URL: ${{ vars.MFE_DASHBOARD_URL }}
           MFE_JOB_SEARCH_URL: ${{ vars.MFE_JOB_SEARCH_URL }}
           MFE_BUDGET_URL: ${{ vars.MFE_BUDGET_URL }}
