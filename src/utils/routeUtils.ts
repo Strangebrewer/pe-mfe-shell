@@ -55,6 +55,18 @@ export const routes: RouteDefinition[] = [
     path: '/dashboard/*',
     ...buildLazyImports(() => import('pe-mfe-dashboard/App'), MINIMUM_LOAD_DELAY),
   },
+  {
+    path: '/home-maintenance/*',
+    ...buildLazyImports(() => import('pe-mfe-home-maintenance/App'), MINIMUM_LOAD_DELAY),
+  },
+  {
+    path: '/projects/*',
+    ...buildLazyImports(() => import('pe-mfe-project-mgr/App'), MINIMUM_LOAD_DELAY),
+  },
+  {
+    path: '/recipes/*',
+    ...buildLazyImports(() => import('pe-mfe-recipes/App'), MINIMUM_LOAD_DELAY),
+  },
 ];
 
 export const bootRoutePath =

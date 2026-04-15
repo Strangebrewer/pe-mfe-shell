@@ -14,26 +14,32 @@ const Sidebar: FC = () => {
       </div>
 
       <div>
-        <button className='sidebar-btn' onClick={() => navigate('/job-search/jobs')}>
+        <button className='sidebar-btn' title="job search" onClick={() => navigate('/job-search/jobs')}>
           <i className='fas fa-search-plus --candy' />
         </button>
       </div>
 
       <div>
-        <button className='sidebar-btn'>
+        <button className='sidebar-btn' title="budget" onClick={() => navigate('/budget')}>
           <i className='fas fa-smile --candy' />
         </button>
       </div>
 
       <div>
-        <button className='sidebar-btn'>
+        <button className='sidebar-btn' title="home maintenance" onClick={() => navigate('/home-maintenance')}>
           <i className='fas fa-crown --candy' />
         </button>
       </div>
 
       <div>
-        <button className='sidebar-btn'>
+        <button className='sidebar-btn' title="recipes" onClick={() => navigate('/recipes')}>
           <i className='fas fa-crow --candy' />
+        </button>
+      </div>
+
+      <div>
+        <button className='sidebar-btn' title="projects" onClick={() => navigate('/projects')}>
+          <i className='fas fa-yin-yang --candy' />
         </button>
       </div>
     </div>

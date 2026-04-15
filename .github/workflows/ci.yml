@@ -66,6 +66,9 @@ jobs:
           MFE_DASHBOARD_URL: ${{ vars.MFE_DASHBOARD_URL }}
           MFE_JOB_SEARCH_URL: ${{ vars.MFE_JOB_SEARCH_URL }}
           MFE_BUDGET_URL: ${{ vars.MFE_BUDGET_URL }}
+          MFE_HOME_MAINTENANCE: ${{ vars.MFE_HOME_MAINTENANCE }}
+          MFE_PROJECT_MGR: ${{ vars.MFE_PROJECT_MGR }}
+          MFE_RECIPES: ${{ vars.MFE_RECIPES }}
 
       - uses: google-github-actions/auth@v2
         with:
@@ -107,6 +110,9 @@ jobs:
           MFE_DASHBOARD_URL: ${{ vars.MFE_DASHBOARD_URL }}
           MFE_JOB_SEARCH_URL: ${{ vars.MFE_JOB_SEARCH_URL }}
           MFE_BUDGET_URL: ${{ vars.MFE_BUDGET_URL }}
+          MFE_HOME_MAINTENANCE: ${{ vars.MFE_HOME_MAINTENANCE }}
+          MFE_PROJECT_MGR: ${{ vars.MFE_PROJECT_MGR }}
+          MFE_RECIPES: ${{ vars.MFE_RECIPES }}
 
       - uses: google-github-actions/auth@v2
         with:
