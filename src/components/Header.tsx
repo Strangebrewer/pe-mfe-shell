@@ -20,8 +20,9 @@ const Header: FC = () => {
       case path.startsWith('/dashboard'):
         return (
           <>
-            <TransparentButton size='lg' color="indigo" text="Dashboard" onClick={() => navigate('/dashboard')} />
-            <TransparentButton size='lg' color="red" text="Bills" onClick={() => navigate('/dashboard/bills')} />
+          {/* keeping this as an example, but right now these links are not needed */}
+            {/* <TransparentButton size='lg' color="indigo" text="Dashboard" onClick={() => navigate('/dashboard')} />
+            <TransparentButton size='lg' color="red" text="Bills" onClick={() => navigate('/dashboard/bills')} /> */}
           </>
         );
       default:
