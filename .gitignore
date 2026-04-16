@@ -8,7 +8,8 @@ out/
 *.log
 build/
 .vscode
-env
+.env
+.env.local
 stats.json
 .ssh
 @mf-types
