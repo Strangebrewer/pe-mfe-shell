@@ -33,10 +33,10 @@ const Shell: FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className='tw:max-h-screen'>
       <Header />
 
-      <div className='tw:flex'>
+      <div className='tw:flex tw:h-[calc(100vh_-_64px)] tw:max-h-[calc(100vh_-_64px)] tw:overflow-y-auto tw:overflow-x-hidden tw:pl-[64px]'>
         <Sidebar />
         <BaseRouter />
       </div>

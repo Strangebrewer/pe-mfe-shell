@@ -32,3 +32,14 @@
   align-items: center;
   position: relative;
 }
+
+.shell-sidebar {
+  position: absolute;
+  top: 64px;
+  left: 0;
+}
+
+.shell-main {
+  height: calc(100vh_-_64px);
+  max-height: calc(100vh_-_64px);
+}
