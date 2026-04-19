@@ -25,6 +25,13 @@ const Header: FC = () => {
             <TransparentButton size='lg' color="red" text="Bills" onClick={() => navigate('/dashboard/bills')} /> */}
           </>
         );
+      case path.startsWith('/budget'):
+        return (
+          <>
+            <TransparentButton size='lg' color='indigo' text='K-Shared' onClick={() => navigate('/budget/categories/mine')} />
+            <TransparentButton size='lg' color='indigo' text='C-Shared' onClick={() => navigate('/budget/categories/hers')} />
+          </>
+        )
       default:
         return <></>;
     }
@@ -38,9 +45,29 @@ const Header: FC = () => {
     setShowLoginModal(!showLoginModal);
   }
 
+  const appName = () => {
+    const path = location.pathname;
+    switch(true) {
+      case path.startsWith('/dashboard'):
+        return 'DASHBOARD';
+      case path.startsWith('/budget'):
+        return 'BUDGETING';
+      case path.startsWith('/job-search'):
+        return 'JOB SEARCH';
+      case path.startsWith('/home-maintenance'):
+        return 'MAINTENANCE';
+      case path.startsWith('/recipes'):
+        return 'RECIPES';
+      case path.startsWith('/projects'):
+        return 'PROJECTS';
+      default:
+        return '~ NARF! ~'
+    }
+  }
+
   return (
     <nav className='tw:border tw:border-[#ccc] tw:h-[64px] tw:flex tw:items-center tw:relative'>
-      <h1 className='tw:mr-[96px]'>Microfrontend Shell</h1>
+      <h1 className='tw:mr-[96px] tw:pl-[16px]'>{appName()}</h1>
 
       <div className='tw:flex tw:gap-[16px]'>
         {getHeaderLinks()}
