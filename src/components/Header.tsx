@@ -16,6 +16,7 @@ const Header: FC = () => {
 
   function getHeaderLinks() {
     const path = location.pathname;
+    console.log('path:::', path);
     switch (true) {
       case path.startsWith('/dashboard'):
         return (
