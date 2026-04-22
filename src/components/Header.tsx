@@ -20,7 +20,7 @@ const Header: FC = () => {
       case path.startsWith('/dashboard'):
         return (
           <>
-          {/* keeping this as an example, but right now these links are not needed */}
+            {/* keeping this as an example, but right now these links are not needed */}
             {/* <TransparentButton size='lg' color="indigo" text="Dashboard" onClick={() => navigate('/dashboard')} />
             <TransparentButton size='lg' color="red" text="Bills" onClick={() => navigate('/dashboard/bills')} /> */}
           </>
@@ -28,6 +28,12 @@ const Header: FC = () => {
       case path.startsWith('/budget'):
         return (
           <>
+            {path !== '/budget' && path !== '/budget/'
+              ? (
+                <span className='tw:absolute tw:margin-auto tw:-left-[60px]'>
+                  <TransparentButton size='lg' color='blue' text='<--' onClick={() => navigate('/budget')} />
+                </span>
+              ) : null}
             <TransparentButton size='lg' color='indigo' text='K-Shared' onClick={() => navigate('/budget/categories/mine')} />
             <TransparentButton size='lg' color='indigo' text='C-Shared' onClick={() => navigate('/budget/categories/hers')} />
           </>
@@ -47,7 +53,7 @@ const Header: FC = () => {
 
   const appName = () => {
     const path = location.pathname;
-    switch(true) {
+    switch (true) {
       case path.startsWith('/dashboard'):
         return 'DASHBOARD';
       case path.startsWith('/budget'):
@@ -69,7 +75,7 @@ const Header: FC = () => {
     <nav className='tw:border tw:border-[#ccc] tw:h-[64px] tw:flex tw:items-center tw:relative'>
       <h1 className='tw:mr-[96px] tw:pl-[16px]'>{appName()}</h1>
 
-      <div className='tw:flex tw:gap-[16px]'>
+      <div className='tw:flex tw:gap-[16px] tw:relative'>
         {getHeaderLinks()}
       </div>
 
