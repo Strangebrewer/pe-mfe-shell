@@ -14,11 +14,8 @@
   & > i {
     margin: auto;
     font-size: 20px;
+    color: var(--candy);
   }
-}
-
-.--candy {
-  color: #e22c5a;
 }
 
 .shell-login-btn {

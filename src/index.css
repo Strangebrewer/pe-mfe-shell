@@ -11,14 +11,10 @@
   --color-text-muted: #c4b5fd;
 }
 
-:root {
-  --candy: #BC13FE;
-}
-
 body {
   background-color: #0d0a14;
   background-image:
-    linear-gradient(rgba(13, 10, 20, 0.88), rgba(13, 10, 20, 0.88)),
+    linear-gradient(rgba(13, 10, 20, 0.75), rgba(13, 10, 20, 0.75)),
     url('./assets/starfield.png');
   background-size: cover;
   background-position: center;
