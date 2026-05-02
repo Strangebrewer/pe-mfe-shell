@@ -36,9 +36,11 @@ const Shell: FC = () => {
     <div className='tw:max-h-screen'>
       <Header />
 
-      <div className='tw:flex tw:h-[calc(100vh_-_64px)] tw:max-h-[calc(100vh_-_64px)] tw:overflow-y-auto tw:overflow-x-hidden tw:pl-[64px]'>
+      <div className='tw:flex tw:h-[calc(100vh_-_64px)] tw:overflow-hidden tw:pl-[64px]'>
         <Sidebar />
-        <BaseRouter />
+        <div className='tw:flex-1 tw:overflow-y-auto tw:overflow-x-hidden'>
+          <BaseRouter />
+        </div>
       </div>
     </div>
   );

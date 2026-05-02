@@ -1,1 +1,28 @@
 @import "tailwindcss" prefix(tw);
+
+@theme {
+  --color-violet: #BC13FE;
+  --color-hotpink: #e22c5a;
+  --color-lime: #51CB20;
+  --color-neon-cyan: #00E5FF;
+  --color-surface: #1a0f2e;
+  --color-base: #0d0a14;
+  --color-text-primary: #f0e6ff;
+  --color-text-muted: #c4b5fd;
+}
+
+:root {
+  --candy: #BC13FE;
+}
+
+body {
+  background-color: #0d0a14;
+  background-image:
+    linear-gradient(rgba(13, 10, 20, 0.85), rgba(13, 10, 20, 0.85)),
+    url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Pillars_of_creation_2014_HST_WFC3-UVIS_full-res_denoised.jpg/800px-Pillars_of_creation_2014_HST_WFC3-UVIS_full-res_denoised.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #f0e6ff;
+  min-height: 100vh;
+}

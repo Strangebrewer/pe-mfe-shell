@@ -72,8 +72,8 @@ const Header: FC = () => {
   }
 
   return (
-    <nav className='tw:border tw:border-[#ccc] tw:h-[64px] tw:flex tw:items-center tw:relative'>
-      <h1 className='tw:mr-[96px] tw:pl-[16px]'>{appName()}</h1>
+    <nav className='tw:h-[64px] tw:flex tw:items-center tw:relative tw:border-b tw:border-[#BC13FE] tw:bg-[#1a0f2e]/90'>
+      <h1 className='tw:mr-[96px] tw:pl-[16px] tw:text-[#f0e6ff] tw:tracking-widest tw:text-sm tw:font-light'>{appName()}</h1>
 
       <div className='tw:flex tw:gap-[16px] tw:relative'>
         {getHeaderLinks()}
@@ -82,7 +82,7 @@ const Header: FC = () => {
       {isReady
         ? (
           <button
-            className='tw:right-[16px] tw:absolute'
+            className='shell-auth-btn'
             onClick={auth}
           >
             {user ? 'Logout' : 'Login'}
