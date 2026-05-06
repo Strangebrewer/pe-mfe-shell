@@ -47,8 +47,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ close, isOpen }) => {
         {error && <p className="tw:text-red-600 tw:text-sm tw:mt-[8px]">{error}</p>}
         <div className="tw:flex tw:justify-center tw:gap-[8px] tw:py-[8px]">
           <button type="submit" style={{ display: 'none' }} />
-          <Button text="cancel" variant="red" onClick={closeModal} />
-          <Button text="submit" variant="blue" last onClick={submit} />
+          <Button text="cancel" color="red" onClick={closeModal} />
+          <Button text="submit" color="blue" last onClick={submit} />
         </div>
       </form>
     </Modal>

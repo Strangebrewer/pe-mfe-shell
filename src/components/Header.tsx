@@ -34,8 +34,8 @@ const Header: FC = () => {
                   <TransparentButton size='lg' color='blue' text='<--' onClick={() => navigate('/budget')} />
                 </span>
               ) : null}
-            <TransparentButton size='lg' color='indigo' text='K-Shared' onClick={() => navigate('/budget/categories/mine')} />
-            <TransparentButton size='lg' color='indigo' text='C-Shared' onClick={() => navigate('/budget/categories/hers')} />
+            <TransparentButton size='lg' color='blue' text='K-Shared' onClick={() => navigate('/budget/categories/mine')} />
+            <TransparentButton size='lg' color='blue' text='C-Shared' onClick={() => navigate('/budget/categories/hers')} />
           </>
         )
       default:
