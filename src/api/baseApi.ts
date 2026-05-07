@@ -1,34 +1,43 @@
 import { axiosPublic, axiosAuth } from "../utils/authClient";
 
 export default class BaseApi {
-  endpoint;
-  axios;
   axiosWithAuth;
+  axios;
+  endpoint;
   constructor(endpoint: string) {
     this.endpoint = endpoint;
     this.axios = axiosPublic;
     this.axiosWithAuth = axiosAuth;
   }
 
-  get(query: any) {
+  get(query?: Record<string, any>, shouldTrace = false) {
     const searchParams = new URLSearchParams(query).toString();
-    return this.axiosWithAuth.get(`${this.endpoint}${query ? "?" + searchParams : ""}`);
+    const headers: Record<string, any> = {};
+    if (shouldTrace) headers['X-Trace-ID'] = crypto.randomUUID();
+    return this.axiosWithAuth.get(`${this.endpoint}${query ? '?' + searchParams : ''}`, { headers });
   }
 
-  getOne(id: string, query: any) {
-    const searchParams = new URLSearchParams(query).toString();
-    return this.axiosWithAuth.get(`${this.endpoint}/${id}${query ? '?' + searchParams : ''}`);
+  getOne(id: string, shouldTrace = false) {
+    const headers: Record<string, any> = {};
+    if (shouldTrace) headers['X-Trace-ID'] = crypto.randomUUID();
+    return this.axiosWithAuth.get(`${this.endpoint}/${id}`, { headers });
   }
 
-  create(item: any) {
-    return this.axiosWithAuth.post(`${this.endpoint}`, item);
+  create(data: Record<string, any>, shouldTrace = false) {
+    const headers: Record<string, any> = {};
+    if (shouldTrace) headers['X-Trace-ID'] = crypto.randomUUID();
+    return this.axiosWithAuth.post(this.endpoint, data, { headers });
   }
 
-  update(item: any) {
-    return this.axiosWithAuth.put(`${this.endpoint}/${item.id}`, item);
+  update(item: any, shouldTrace = false) {
+    const headers: Record<string, any> = {};
+    if (shouldTrace) headers['X-Trace-ID'] = crypto.randomUUID();
+    return this.axiosWithAuth.put(`${this.endpoint}/${item.id}`, item, { headers });
   }
 
-  delete(id: string) {
-    return this.axiosWithAuth.delete(`${this.endpoint}/${id}`);
+  delete(id: string, shouldTrace = false) {
+    const headers: Record<string, any> = {};
+    if (shouldTrace) headers['X-Trace-ID'] = crypto.randomUUID();
+    return this.axiosWithAuth.delete(`${this.endpoint}/${id}`, { headers });
   }
 }
