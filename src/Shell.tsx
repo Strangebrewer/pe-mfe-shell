@@ -1,12 +1,13 @@
-import { FC, useEffect } from 'react';
-import { BaseRouter } from './BaseRouter';
-import Header from './components/Header';
-import Sidebar from './components/Sidebar';
-import { useGetCurrentUser } from './hooks/userHooks';
-import { useUserStore } from '@bka-stuff/pe-mfe-utils';
+import { FC, useEffect } from "react";
+import { BaseRouter } from "./BaseRouter";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import { useGetCurrentUser } from "./hooks/userHooks";
+import { useUserStore } from "@bka-stuff/pe-mfe-utils";
 
-import { authClient } from './utils/authClient';
-import { MINIMUM_LOAD_DELAY } from './utils/constants';
+import { authClient } from "./utils/authClient";
+import { MINIMUM_LOAD_DELAY } from "./utils/constants";
+import TraceList from "./components/tracer/TraceList";
 
 const Shell: FC = () => {
   const [getCurrentUser] = useGetCurrentUser();
@@ -23,7 +24,7 @@ const Shell: FC = () => {
           clearUser();
         }
       } catch (error) {
-        console.log('error in App.jsx:::', error);
+        console.log("error in App.jsx:::", error);
         authClient.clearTokens();
         clearUser();
       } finally {
@@ -33,14 +34,15 @@ const Shell: FC = () => {
   }, []);
 
   return (
-    <div className='tw:max-h-screen'>
+    <div className="tw:max-h-screen">
       <Header />
 
-      <div className='tw:flex tw:h-[calc(100vh_-_64px)] tw:overflow-hidden tw:pl-[64px]'>
+      <div className="tw:flex tw:h-[calc(100vh_-_64px)] tw:overflow-hidden tw:pl-[64px]">
         <Sidebar />
-        <div className='tw:flex-1 tw:overflow-y-auto tw:overflow-x-hidden'>
+        <div className="tw:flex-1 tw:overflow-y-auto tw:overflow-x-hidden">
           <BaseRouter />
         </div>
+        <TraceList />
       </div>
     </div>
   );
