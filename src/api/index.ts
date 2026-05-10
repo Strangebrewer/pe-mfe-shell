@@ -1,5 +1,7 @@
-import user from './user';
+import tracer from "./tracer";
+import user from "./user";
 
 export default {
+  tracer,
   user,
 };
