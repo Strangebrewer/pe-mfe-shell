@@ -14,5 +14,5 @@ export type Span = {
 export type DisplayTrace = {
   trace: { id: string; label: string };
   spans: Span[];
-  status: 'polling' | 'done';
+  status: 'polling' | 'done' | 'no-spans';
 };

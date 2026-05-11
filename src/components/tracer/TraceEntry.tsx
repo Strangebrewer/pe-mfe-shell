@@ -17,6 +17,8 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
       >
         {status === 'polling' ? (
           <span className="tw:text-blue tw:text-xs tw:animate-spin tw:inline-block">⟳</span>
+        ) : status === 'no-spans' ? (
+          <span className="tw:text-red tw:text-xs">✗</span>
         ) : (
           <span className="tw:text-green tw:text-xs">✓</span>
         )}
@@ -27,7 +29,9 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
 
       {expanded && (
         <div className="tw:flex tw:flex-col tw:gap-1 tw:px-3 tw:pb-2">
-          {spans.length === 0 ? (
+          {status === 'no-spans' ? (
+            <p className="tw:text-red tw:text-xs tw:italic">No trace data received</p>
+          ) : spans.length === 0 ? (
             <p className="tw:text-muted tw:text-xs tw:italic">Waiting for spans...</p>
           ) : (
             spans.map((span) => {

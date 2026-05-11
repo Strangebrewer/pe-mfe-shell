@@ -41,6 +41,16 @@ const TraceList: FC = () => {
     [removeTraceId],
   );
 
+  const handleNoSpans = useCallback(
+    (trace: Trace) => {
+      setDisplayTraces((prev) =>
+        prev.map((d) => (d.trace.id === trace.id ? { ...d, status: 'no-spans' } : d)),
+      );
+      removeTraceId(trace);
+    },
+    [removeTraceId],
+  );
+
   return (
     <div
       className={`tw:fixed tw:right-0 tw:top-[64px] tw:h-[calc(100vh_-_64px)] tw:bg-surface tw:border-l tw:border-[var(--nPurpleAlpha)] tw:overflow-hidden tw:transition-all tw:duration-200 tw:z-10 ${expanded ? 'tw:w-[300px]' : 'tw:w-[64px]'}`}
@@ -53,6 +63,7 @@ const TraceList: FC = () => {
             trace={d.trace}
             onSpansUpdate={handleSpansUpdate}
             onComplete={handleComplete}
+            onNoSpans={handleNoSpans}
           />
         ))}
 
