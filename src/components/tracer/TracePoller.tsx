@@ -41,7 +41,7 @@ const TracePoller: FC<Props> = ({ trace, onSpansUpdate, onComplete }) => {
           settleTimer = setTimeout(finish, 10500);
         }
       } catch {
-        // silently ignore transient poll errors
+        finish();
       }
     }, 5000);
 
