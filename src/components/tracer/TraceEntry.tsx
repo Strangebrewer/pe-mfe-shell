@@ -10,9 +10,9 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="tw:border-b tw:border-[var(--nPurpleAlpha)]">
+    <div className="tw:border-b tw:border-purpleAlpha">
       <button
-        className="tw:w-full tw:flex tw:items-center tw:gap-2 tw:text-left tw:py-2 tw:px-3 hover:tw:bg-[var(--nPurpleAlpha)] tw:transition-colors"
+        className="tw:w-full tw:flex tw:items-center tw:gap-2 tw:text-left tw:py-2 tw:px-3 hover:tw:bg-purpleAlpha tw:transition-colors"
         onClick={() => setExpanded((e) => !e)}
       >
         {status === 'polling' ? (
@@ -39,10 +39,7 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
                 new Date(span.endTime).getTime() - new Date(span.startTime).getTime(),
               );
               return (
-                <div
-                  key={span.spanId}
-                  className="tw:bg-[var(--baseBg)] tw:rounded tw:p-2 tw:text-xs"
-                >
+                <div key={span.spanId} className="tw:bg-bg tw:rounded tw:p-2 tw:text-xs">
                   <div className="tw:flex tw:justify-between tw:items-center">
                     <span className="tw:text-blue tw:font-medium">{span.service}</span>
                     <span className="tw:text-muted">{durationMs}ms</span>

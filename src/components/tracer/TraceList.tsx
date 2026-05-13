@@ -1,5 +1,5 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import { useTracerStore } from '@bka-stuff/pe-mfe-utils';
+import { FC, useEffect, useState } from 'react';
+import { ActionButton, useTracerStore } from '@bka-stuff/pe-mfe-utils';
 import TracePoller from './TracePoller';
 import TraceEntry from './TraceEntry';
 import type { DisplayTrace, Span } from './types';
@@ -27,33 +27,27 @@ const TraceList: FC = () => {
     });
   }, [traces]);
 
-  const handleSpansUpdate = useCallback((traceId: string, spans: Span[]) => {
+  function handleSpansUpdate(traceId: string, spans: Span[]) {
     setDisplayTraces((prev) => prev.map((d) => (d.trace.id === traceId ? { ...d, spans } : d)));
-  }, []);
+  }
 
-  const handleComplete = useCallback(
-    (trace: Trace) => {
-      setDisplayTraces((prev) =>
-        prev.map((d) => (d.trace.id === trace.id ? { ...d, status: 'done' } : d)),
-      );
-      removeTraceId(trace);
-    },
-    [removeTraceId],
-  );
+  function handleComplete(trace: Trace) {
+    setDisplayTraces((prev) =>
+      prev.map((d) => (d.trace.id === trace.id ? { ...d, status: 'done' } : d)),
+    );
+    removeTraceId(trace);
+  }
 
-  const handleNoSpans = useCallback(
-    (trace: Trace) => {
-      setDisplayTraces((prev) =>
-        prev.map((d) => (d.trace.id === trace.id ? { ...d, status: 'no-spans' } : d)),
-      );
-      removeTraceId(trace);
-    },
-    [removeTraceId],
-  );
+  function handleNoSpans(trace: Trace) {
+    setDisplayTraces((prev) =>
+      prev.map((d) => (d.trace.id === trace.id ? { ...d, status: 'no-spans' } : d)),
+    );
+    removeTraceId(trace);
+  }
 
   return (
     <div
-      className={`tw:fixed tw:right-0 tw:top-[64px] tw:h-[calc(100vh_-_64px)] tw:bg-surface tw:border-l tw:border-[var(--nPurpleAlpha)] tw:overflow-hidden tw:transition-all tw:duration-200 tw:z-10 ${expanded ? 'tw:w-[300px]' : 'tw:w-[64px]'}`}
+      className={`tw:fixed tw:right-0 tw:top-[64px] tw:h-[calc(100vh_-_64px)] tw:bg-surface tw:border-l tw:border-purpleAlpha tw:overflow-hidden tw:transition-all tw:duration-200 tw:z-10 ${expanded ? 'tw:w-[300px]' : 'tw:w-[64px]'}`}
     >
       {displayTraces
         .filter((d) => d.status === 'polling')
@@ -67,19 +61,20 @@ const TraceList: FC = () => {
           />
         ))}
 
-      <button
-        onClick={() => setExpanded((e) => !e)}
-        className={`tw:w-full tw:h-[48px] tw:flex tw:items-center tw:text-muted hover:tw:text-primary tw:transition-colors ${expanded ? 'tw:px-3 tw:justify-between' : 'tw:justify-center'}`}
-      >
-        {expanded && <span className="tw:text-sm tw:font-medium">Activity</span>}
-        <span className="tw:text-lg tw:text-green">
-          {expanded ? (
-            <i className="fas fa-arrow-right" />
-          ) : (
-            <i className="fas fa-info-circle" title="view traces" />
-          )}
+      <div>
+        <span
+          className={`tw:w-full tw:h-[48px] tw:flex tw:items-center tw:text-muted hover:tw:text-primary tw:transition-colors ${expanded ? 'tw:px-3 tw:justify-between' : 'tw:justify-center'}`}
+        >
+          {expanded && <span className="tw:text-sm tw:font-medium">Activity</span>}
+          <ActionButton
+            iconClass={expanded ? 'fas fa-arrow-right' : 'fas fa-info-circle'}
+            title={expanded ? '' : 'view traces'}
+            size="lg"
+            color="green"
+            onClick={() => setExpanded((e) => !e)}
+          />
         </span>
-      </button>
+      </div>
 
       {expanded && (
         <div className="tw:overflow-y-auto tw:h-[calc(100%-48px)]">
