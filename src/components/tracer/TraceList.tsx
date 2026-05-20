@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { ActionButton, useTracerStore } from '@bka-stuff/pe-mfe-utils';
 import TracePoller from './TracePoller';
 import TraceEntry from './TraceEntry';
@@ -10,12 +10,18 @@ const TraceList: FC = () => {
   const { traces, removeTraceId } = useTracerStore();
   const [displayTraces, setDisplayTraces] = useState<DisplayTrace[]>([]);
   const [expanded, setExpanded] = useState(false);
+  const [showCallout, setShowCallout] = useState(false);
+  const hasShownCallout = useRef(false);
 
   useEffect(() => {
     setDisplayTraces((prev) => {
       const existingIds = new Set(prev.map((d) => d.trace.id));
       const incoming = traces.filter((t) => !existingIds.has(t.id));
       if (!incoming.length) return prev;
+      if (prev.length === 0 && !hasShownCallout.current) {
+        hasShownCallout.current = true;
+        setShowCallout(true);
+      }
       return [
         ...incoming.map((t) => ({
           trace: t,
@@ -26,6 +32,12 @@ const TraceList: FC = () => {
       ];
     });
   }, [traces]);
+
+  useEffect(() => {
+    if (!showCallout) return;
+    const timer = setTimeout(() => setShowCallout(false), 4000);
+    return () => clearTimeout(timer);
+  }, [showCallout]);
 
   function handleSpansUpdate(traceId: string, spans: Span[]) {
     setDisplayTraces((prev) => prev.map((d) => (d.trace.id === traceId ? { ...d, spans } : d)));
@@ -46,6 +58,15 @@ const TraceList: FC = () => {
   }
 
   return (
+    <>
+      {showCallout && (
+        <button
+          onClick={() => setShowCallout(false)}
+          className="tw:fixed tw:right-[72px] tw:top-[80px] tw:z-20 tw:bg-surface tw:border tw:border-greenBorder tw:rounded-lg tw:px-3 tw:py-2 tw:text-sm tw:text-primary tw:shadow-lg tw:cursor-pointer tw:text-left tw:max-w-[220px] tw:leading-snug hover:tw:border-green tw:transition-colors"
+        >
+          Your first trace just fired! Click the icon to see live spans →
+        </button>
+      )}
     <div
       className={`tw:fixed tw:right-0 tw:top-[64px] tw:h-[calc(100vh_-_64px)] tw:bg-surface tw:border-l tw:border-purpleAlpha tw:overflow-hidden tw:transition-all tw:duration-200 tw:z-10 ${expanded ? 'tw:w-[300px]' : 'tw:w-[64px]'}`}
     >
@@ -88,6 +109,7 @@ const TraceList: FC = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
