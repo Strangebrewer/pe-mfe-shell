@@ -28,16 +28,30 @@ const Header: FC = () => {
       case path.startsWith('/budget'):
         return (
           <>
-            {path !== '/budget' && path !== '/budget/'
-              ? (
-                <span className='tw:absolute tw:margin-auto tw:-left-[60px]'>
-                  <TransparentButton size='lg' color='blue' text='<--' onClick={() => navigate('/budget')} />
-                </span>
-              ) : null}
-            <TransparentButton size='lg' color='blue' text='K-Shared' onClick={() => navigate('/budget/categories/mine')} />
-            <TransparentButton size='lg' color='blue' text='C-Shared' onClick={() => navigate('/budget/categories/hers')} />
+            {path !== '/budget' && path !== '/budget/' ? (
+              <span className="tw:absolute tw:margin-auto tw:-left-[60px]">
+                <TransparentButton
+                  size="lg"
+                  color="blue"
+                  text="<--"
+                  onClick={() => navigate('/budget')}
+                />
+              </span>
+            ) : null}
+            <TransparentButton
+              size="lg"
+              color="blue"
+              text="Shared-Mine"
+              onClick={() => navigate('/budget/categories/mine')}
+            />
+            <TransparentButton
+              size="lg"
+              color="blue"
+              text="Shared-Hers"
+              onClick={() => navigate('/budget/categories/hers')}
+            />
           </>
-        )
+        );
       default:
         return <></>;
     }
@@ -67,27 +81,23 @@ const Header: FC = () => {
       case path.startsWith('/projects'):
         return 'PROJECTS';
       default:
-        return '~ NARF! ~'
+        return '~ NARF! ~';
     }
-  }
+  };
 
   return (
-    <nav className='tw:h-[64px] tw:flex tw:items-center tw:relative tw:border-b tw:border-[#BC13FE] tw:bg-[#1a0f2e]/90'>
-      <h1 className='tw:mr-[96px] tw:pl-[16px] tw:text-[#f0e6ff] tw:tracking-widest tw:text-sm tw:font-light'>{appName()}</h1>
+    <nav className="tw:h-[64px] tw:flex tw:items-center tw:relative tw:border-b tw:border-[#BC13FE] tw:bg-[#1a0f2e]/90">
+      <h1 className="tw:mr-[96px] tw:pl-[16px] tw:text-[#f0e6ff] tw:tracking-widest tw:text-sm tw:font-light">
+        {appName()}
+      </h1>
 
-      <div className='tw:flex tw:gap-[16px] tw:relative'>
-        {getHeaderLinks()}
-      </div>
+      <div className="tw:flex tw:gap-[16px] tw:relative">{getHeaderLinks()}</div>
 
-      {isReady
-        ? (
-          <button
-            className='shell-auth-btn'
-            onClick={auth}
-          >
-            {user ? 'Logout' : 'Login'}
-          </button>
-        ) : null}
+      {isReady ? (
+        <button className="shell-auth-btn" onClick={auth}>
+          {user ? 'Logout' : 'Login'}
+        </button>
+      ) : null}
       <LoginModal close={() => setShowLoginModal(false)} isOpen={showLoginModal} />
     </nav>
   );
