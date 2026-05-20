@@ -39,7 +39,7 @@ const Shell: FC = () => {
 
       <div className="tw:flex tw:h-[calc(100vh_-_64px)] tw:overflow-hidden tw:pl-[64px] tw:pr-[64px]">
         <Sidebar />
-        <div className="tw:flex-1 tw:overflow-y-auto tw:overflow-x-hidden">
+        <div className="no-scrollbar tw:flex-1 tw:overflow-y-auto tw:overflow-x-hidden">
           <BaseRouter />
         </div>
         <TraceList />
