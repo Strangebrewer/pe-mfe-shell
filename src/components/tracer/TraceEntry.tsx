@@ -1,5 +1,10 @@
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import type { DisplayTrace } from './types';
+import SpanRow from './SpanRow';
+import GapMarker from './GapMarker';
+
+const GAP_THRESHOLD_MS = 100;
+const ASYNC_THRESHOLD_MS = 500;
 
 type Props = {
   displayTrace: DisplayTrace;
@@ -8,6 +13,22 @@ type Props = {
 const TraceEntry: FC<Props> = ({ displayTrace }) => {
   const { trace, spans, status } = displayTrace;
   const [expanded, setExpanded] = useState(false);
+
+  const sorted = [...spans].sort(
+    (a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime(),
+  );
+
+  const traceStart = sorted.length ? new Date(sorted[0].startTime).getTime() : 0;
+  const traceEnd = sorted.length
+    ? Math.max(...sorted.map((s) => new Date(s.endTime).getTime()))
+    : 0;
+  const totalDuration = traceEnd - traceStart;
+  const totalDurationDisplay =
+    totalDuration >= 1000
+      ? `${(totalDuration / 1000).toFixed(1)}s`
+      : totalDuration > 0
+        ? `${totalDuration}ms`
+        : null;
 
   return (
     <div className="tw:border-b tw:border-purpleAlpha">
@@ -23,7 +44,9 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
           <span className="tw:text-green tw:text-xs">✓</span>
         )}
         <span className="tw:text-primary tw:text-sm tw:truncate tw:flex-1">{trace.label}</span>
-        <span className="tw:text-muted tw:text-xs">{spans.length}s</span>
+        {totalDurationDisplay && (
+          <span className="tw:text-muted tw:text-xs">{totalDurationDisplay}</span>
+        )}
         <span className="tw:text-muted tw:text-xs">{expanded ? '▲' : '▼'}</span>
       </button>
 
@@ -31,24 +54,21 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
         <div className="tw:flex tw:flex-col tw:gap-1 tw:px-3 tw:pb-2">
           {status === 'no-spans' ? (
             <p className="tw:text-red tw:text-xs tw:italic">No trace data received</p>
-          ) : spans.length === 0 ? (
+          ) : sorted.length === 0 ? (
             <p className="tw:text-muted tw:text-xs tw:italic">Waiting for spans...</p>
           ) : (
-            spans.map((span) => {
-              const durationMs = Math.round(
-                new Date(span.endTime).getTime() - new Date(span.startTime).getTime(),
-              );
+            sorted.map((span, i) => {
+              const next = sorted[i + 1];
+              const gapMs = next
+                ? new Date(next.startTime).getTime() - new Date(span.endTime).getTime()
+                : 0;
               return (
-                <div key={span.spanId} className="tw:bg-bg tw:rounded tw:p-2 tw:text-xs">
-                  <div className="tw:flex tw:justify-between tw:items-center">
-                    <span className="tw:text-blue tw:font-medium">{span.service}</span>
-                    <span className="tw:text-muted">{durationMs}ms</span>
-                  </div>
-                  <div className="tw:text-muted tw:mt-0.5">{span.operation}</div>
-                  {span.status && span.status !== 'ok' && (
-                    <div className="tw:text-red tw:mt-0.5">{span.status}</div>
+                <Fragment key={span.spanId}>
+                  <SpanRow span={span} traceStart={traceStart} totalDuration={totalDuration} />
+                  {gapMs > GAP_THRESHOLD_MS && (
+                    <GapMarker gapMs={gapMs} isAsync={gapMs >= ASYNC_THRESHOLD_MS} />
                   )}
-                </div>
+                </Fragment>
               );
             })
           )}
