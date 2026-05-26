@@ -4,10 +4,12 @@
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+      { "source": "/api/auth/**",       "run": { "serviceId": "go-auth",      "region": "us-central1" } },
+      { "source": "/api/job-search/**", "run": { "serviceId": "go-job-search", "region": "us-central1" } },
+      { "source": "/api/budget/**",     "run": { "serviceId": "go-budget",     "region": "us-central1" } },
+      { "source": "/api/tracer/**",     "run": { "serviceId": "go-tracer",     "region": "us-central1" } },
+      { "source": "/api/graphql",       "run": { "serviceId": "gql-router",    "region": "us-central1" } },
+      { "source": "/**",                "destination": "/index.html" }
     ]
   }
 }
