@@ -1,6 +1,6 @@
 import api from '../api';
 import { authClient } from '../utils/authClient';
-import { useUserStore } from '@bka-stuff/mfe-utils';
+import { useUserStore } from '@bka-stuff/pe-mfe-utils';
 
 export const useGetCurrentUser = () => {
   const { setUser } = useUserStore();
@@ -29,7 +29,11 @@ export const useLogin = () => {
 export const useLogout = () => {
   const { clearUser } = useUserStore();
   async function logout() {
-    await api.user.logout(authClient.getRefreshToken() || "");
+    try {
+      await api.user.logout(authClient.getRefreshToken() || "");
+    } catch {
+      // token already expired or revoked — treat as successful logout
+    }
     authClient.logout();
     clearUser();
   }

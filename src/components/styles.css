@@ -1,23 +1,21 @@
 .sidebar-btn {
-  background-color: white;
+  background-color: transparent;
   border: none;
   outline: none;
   width: 100%;
   height: 64px;
   display: flex;
-  
+  cursor: pointer;
+
   &:hover {
-    background-color: #2fbdff44;
+    background-color: rgba(188, 19, 254, 0.15);
   }
 
   & > i {
     margin: auto;
     font-size: 20px;
+    color: var(--candy);
   }
-}
-
-.--candy {
-  color: var(--candy);
 }
 
 .shell-login-btn {
@@ -25,10 +23,32 @@
   right: 16px;
 }
 
-.shell-nav-header {
-  border: 1px solid #ccc;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  position: relative;
+.shell-sidebar {
+  position: absolute;
+  top: 64px;
+  left: 0;
+  background-color: rgba(26, 15, 46, 0.9);
+}
+
+.shell-auth-btn {
+  position: absolute;
+  right: 16px;
+  padding: 6px 16px;
+  background: transparent;
+  border: 1px solid #00E5FF;
+  color: #00E5FF;
+  cursor: pointer;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background-color: #00E5FF;
+    color: #0d0a14;
+  }
+}
+
+.shell-main {
+  height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
 }

@@ -8,11 +8,11 @@ out/
 *.log
 build/
 .vscode
-env
+.env
+.env.local
 stats.json
 .ssh
 @mf-types
-pnpm-lock.yaml
 __mocks__/ui_connect_llm
 # testing
 /harness/coverage

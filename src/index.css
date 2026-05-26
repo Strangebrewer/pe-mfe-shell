@@ -1,1 +1,53 @@
 @import "tailwindcss" prefix(tw);
+
+@theme {
+  --color-purple: var(--nPurple);
+  --color-purpleAlpha: var(--nPurpleAlpha);
+  --color-purpleBorder: var(--nPurpleBorder);
+  --color-purpleFaint: var(--nPurpleFaint);
+  
+  --color-red: var(--candy);
+  --color-redAlpha: var(--candyAlpha);
+  --color-redBorder: var(--candyBorder);
+  --color-redFaint: var(--candyFaint);
+  
+  --color-green: var(--lime);
+  --color-greenAlpha: var(--limeAlpha);
+  --color-greenBorder: var(--limeBorder);
+  --color-greenFaint: var(--limeFaint);
+  
+  --color-blue: var(--nCyan);
+  --color-blueAlpha: var(--nCyanAlpha);
+  --color-blueBorder: var(--nCyanBorder);
+  --color-blueFaint: var(--nCyanFaint);
+  
+  --color-grey: var(--slate);
+  --color-greyAlpha: var(--slateAlpha);
+  --color-greyBorder: var(--slateBorder);
+  --color-greyFaint: var(--slateFaint);
+  
+  --color-surface: var(--surface);
+  --color-bg: var(--baseBg);
+  --color-primary: var(--textPrimary);
+  --color-muted: var(--textMuted);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background-color: #0d0a14;
+  background-image:
+    linear-gradient(rgba(13, 10, 20, 0.75), rgba(13, 10, 20, 0.75)),
+    url('./assets/starfield.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: var(--textPrimary);
+  min-height: 100vh;
+}

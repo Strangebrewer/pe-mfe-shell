@@ -9,7 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "ESNext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "jsx": "react-jsx",
     "incremental": true,
@@ -20,11 +20,11 @@
     "paths": {
       "mfe-dashboard/*": ["./@types/mfe-dashboard/*"],
       "mfe-job-search/*": ["./@types/mfe-job-search/*"],
-      "axios": ["./node_modules/axios"],
-      "react": ["./node_modules/react"],
-      "react-dom": ["./node_modules/react-dom"]
     },
     "types": ["node"]
+  },
+  "ts-node": {
+    "transpileOnly": true
   },
   "exclude": [
     "__mocks__",
