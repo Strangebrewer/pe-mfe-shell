@@ -3,6 +3,12 @@
     "site": "pe-shell",
     "public": "dist",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "headers": [
+      {
+        "source": "/api/**",
+        "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+      }
+    ],
     "rewrites": [
       { "source": "/api/auth/**",       "run": { "serviceId": "go-auth",      "region": "us-central1" } },
       { "source": "/api/job-search/**", "run": { "serviceId": "go-job-search", "region": "us-central1" } },
