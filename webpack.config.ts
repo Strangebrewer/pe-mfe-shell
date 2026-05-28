@@ -24,6 +24,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html',
+      favicon: './public/mandala.ico',
     }),
 
     new webpack.DefinePlugin({
