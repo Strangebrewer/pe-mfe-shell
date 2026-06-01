@@ -1,4 +1,4 @@
-import { axiosPublic, axiosAuth } from '../utils/authClient';
+import { axiosAuth } from '../utils/authClient';
 const { TRACER_SERVICE_URL } = process.env;
 
 function getTraces(id: string) {

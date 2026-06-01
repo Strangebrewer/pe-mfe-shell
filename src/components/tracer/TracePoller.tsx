@@ -1,6 +1,6 @@
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect } from 'react';
 import api from '../../api';
-import type { Span, DisplayTrace } from './types';
+import { Span, DisplayTrace } from './types';
 
 type Trace = DisplayTrace['trace'];
 
@@ -12,19 +12,6 @@ type Props = {
 };
 
 const TracePoller: FC<Props> = ({ trace, onSpansUpdate, onComplete, onNoSpans }) => {
-  const onSpansUpdateRef = useRef(onSpansUpdate);
-  const onCompleteRef = useRef(onComplete);
-  const onNoSpansRef = useRef(onNoSpans);
-  useEffect(() => {
-    onSpansUpdateRef.current = onSpansUpdate;
-  }, [onSpansUpdate]);
-  useEffect(() => {
-    onCompleteRef.current = onComplete;
-  }, [onComplete]);
-  useEffect(() => {
-    onNoSpansRef.current = onNoSpans;
-  }, [onNoSpans]);
-
   useEffect(() => {
     let spanCount = 0;
     let settleTimer: ReturnType<typeof setTimeout> | null = null;
@@ -34,14 +21,14 @@ const TracePoller: FC<Props> = ({ trace, onSpansUpdate, onComplete, onNoSpans })
       clearInterval(interval);
       if (settleTimer) clearTimeout(settleTimer);
       if (giveUpTimer) clearTimeout(giveUpTimer);
-      onCompleteRef.current(trace);
+      onComplete(trace);
     };
 
     giveUpTimer = setTimeout(() => {
       clearInterval(interval);
       if (settleTimer) clearTimeout(settleTimer);
-      onNoSpansRef.current(trace);
-    }, 20000);
+      onNoSpans(trace);
+    }, 20200);
 
     const interval = setInterval(async () => {
       try {
@@ -49,13 +36,13 @@ const TracePoller: FC<Props> = ({ trace, onSpansUpdate, onComplete, onNoSpans })
         const spans: Span[] = response?.data ?? [];
         if (spans.length > spanCount) {
           spanCount = spans.length;
-          onSpansUpdateRef.current(trace.id, spans);
+          onSpansUpdate(trace.id, spans);
           if (giveUpTimer) {
             clearTimeout(giveUpTimer);
             giveUpTimer = null;
           }
           if (settleTimer) clearTimeout(settleTimer);
-          settleTimer = setTimeout(finish, 10500);
+          settleTimer = setTimeout(finish, 10200);
         }
       } catch {
         finish();

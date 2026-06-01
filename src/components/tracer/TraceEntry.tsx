@@ -2,6 +2,7 @@ import { FC, Fragment, useState } from 'react';
 import type { DisplayTrace } from './types';
 import SpanRow from './SpanRow';
 import GapMarker from './GapMarker';
+import '../styles.css';
 
 const GAP_THRESHOLD_MS = 100;
 const ASYNC_THRESHOLD_MS = 500;
@@ -30,24 +31,36 @@ const TraceEntry: FC<Props> = ({ displayTrace }) => {
         ? `${totalDuration}ms`
         : null;
 
+  function getStatusIcon() {
+    if (status === 'polling') {
+      return <span className="spinner-xs"></span>;
+    }
+    if (status === 'no-spans') {
+      return (
+        <span className="tw:text-red tw:text-xs">
+          <i className="fs fa-times-circle" />
+        </span>
+      );
+    }
+    return (
+      <span className="tw:text-green tw:text-xs">
+        <i className="fas fa-check" />
+      </span>
+    );
+  }
+
   return (
     <div className="tw:border-b tw:border-purpleAlpha">
       <button
         className="tw:w-full tw:flex tw:items-center tw:gap-2 tw:text-left tw:py-2 tw:px-3 hover:tw:bg-purpleAlpha tw:transition-colors"
         onClick={() => setExpanded((e) => !e)}
       >
-        {status === 'polling' ? (
-          <span className="tw:text-blue tw:text-xs tw:animate-spin tw:inline-block">⟳</span>
-        ) : status === 'no-spans' ? (
-          <span className="tw:text-red tw:text-xs">✗</span>
-        ) : (
-          <span className="tw:text-green tw:text-xs">✓</span>
-        )}
-        <span className="tw:text-primary tw:text-sm tw:truncate tw:flex-1">{trace.label}</span>
-        {totalDurationDisplay && (
-          <span className="tw:text-muted tw:text-xs">{totalDurationDisplay}</span>
-        )}
-        <span className="tw:text-muted tw:text-xs">{expanded ? '▲' : '▼'}</span>
+        {getStatusIcon()}
+        <p className="tw:text-primary tw:text-sm tw:truncate tw:flex-1">{trace.label}</p>
+
+        {totalDurationDisplay && <p className="tw:text-muted tw:text-xs">{totalDurationDisplay}</p>}
+
+        <p className="tw:text-muted tw:text-xs">{expanded ? '▲' : '▼'}</p>
       </button>
 
       {expanded && (

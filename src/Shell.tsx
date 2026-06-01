@@ -1,13 +1,13 @@
-import { FC, useEffect } from "react";
-import { BaseRouter } from "./BaseRouter";
-import Header from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import { useGetCurrentUser } from "./hooks/userHooks";
-import { useUserStore } from "@bka-stuff/pe-mfe-utils";
+import { FC, useEffect } from 'react';
+import { BaseRouter } from './BaseRouter';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
+import { useGetCurrentUser } from './hooks/userHooks';
+import { useUserStore } from '@bka-stuff/pe-mfe-utils';
 
-import { authClient } from "./utils/authClient";
-import { MINIMUM_LOAD_DELAY } from "./utils/constants";
-import TraceList from "./components/tracer/TraceList";
+import { authClient } from './utils/authClient';
+import { MINIMUM_LOAD_DELAY } from './utils/constants';
+import TraceList from './components/tracer/TraceList';
 
 const Shell: FC = () => {
   const [getCurrentUser] = useGetCurrentUser();
@@ -24,7 +24,6 @@ const Shell: FC = () => {
           clearUser();
         }
       } catch (error) {
-        console.log("error in App.jsx:::", error);
         authClient.clearTokens();
         clearUser();
       } finally {

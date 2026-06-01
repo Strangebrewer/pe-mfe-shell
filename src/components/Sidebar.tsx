@@ -3,49 +3,30 @@ import { useNavigate } from 'react-router-dom';
 import { useUserStore } from '@bka-stuff/pe-mfe-utils';
 import './styles.css';
 
+const SidebarButton: FC<{ iconClass: string; url: string }> = ({ iconClass, url }) => {
+  const navigate = useNavigate();
+  const title = url.split('-').join(' ');
+  return (
+    <button title={title} className="sidebar-btn" onClick={() => navigate(`/${url}`)}>
+      <i className={`${iconClass} --candy`} />
+    </button>
+  );
+};
+
 const Sidebar: FC = () => {
   const { user } = useUserStore();
-  const navigate = useNavigate();
 
   return (
-    <div className='shell-sidebar tw:w-[64px] tw:min-w-[64px] tw:border-r tw:border-[#BC13FE] tw:min-h-[calc(100vh_-_64px)]'>
-      <div>
-        <button className='sidebar-btn' onClick={() => navigate('/dashboard')}>
-          <i className='fas fa-home --candy' />
-        </button>
-      </div>
+    <div className="shell-sidebar tw:w-[64px] tw:min-w-[64px] tw:border-r tw:border-[#BC13FE] tw:min-h-[calc(100vh_-_64px)]">
+      <SidebarButton iconClass="fas fa-home" url="dashboard" />
 
       {user ? (
         <>
-          <div>
-            <button className='sidebar-btn' title="job search" onClick={() => navigate('/job-search')}>
-              <i className='fas fa-search-plus --candy' />
-            </button>
-          </div>
-
-          <div>
-            <button className='sidebar-btn' title="budget" onClick={() => navigate('/budget')}>
-              <i className='fas fa-smile --candy' />
-            </button>
-          </div>
-
-          <div>
-            <button className='sidebar-btn' title="home maintenance" onClick={() => navigate('/home-maintenance')}>
-              <i className='fas fa-crown --candy' />
-            </button>
-          </div>
-
-          <div>
-            <button className='sidebar-btn' title="recipes" onClick={() => navigate('/recipes')}>
-              <i className='fas fa-crow --candy' />
-            </button>
-          </div>
-
-          <div>
-            <button className='sidebar-btn' title="projects" onClick={() => navigate('/projects')}>
-              <i className='fas fa-yin-yang --candy' />
-            </button>
-          </div>
+          <SidebarButton iconClass="fas fa-search-plus" url="job-search" />
+          <SidebarButton iconClass="fas fa-smile" url="budget" />
+          <SidebarButton iconClass="fas fa-crown" url="home-maintenance" />
+          <SidebarButton iconClass="fas fa-crow" url="recipes" />
+          <SidebarButton iconClass="fas fa-yin-yang" url="projects" />
         </>
       ) : null}
     </div>
