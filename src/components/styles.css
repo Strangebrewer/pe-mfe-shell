@@ -35,15 +35,17 @@
   right: 16px;
   padding: 6px 16px;
   background: transparent;
-  border: 1px solid #00E5FF;
-  color: #00E5FF;
+  border: 1px solid #00e5ff;
+  color: #00e5ff;
   cursor: pointer;
   font-size: 14px;
   letter-spacing: 0.05em;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
-    background-color: #00E5FF;
+    background-color: #00e5ff;
     color: #0d0a14;
   }
 }
@@ -51,4 +53,52 @@
 .shell-main {
   height: calc(100vh - 64px);
   max-height: calc(100vh - 64px);
+}
+
+.spinner-xs {
+  animation: spinner 400ms linear infinite;
+  border: solid 2px transparent;
+  border-bottom-color: var(--nPurple);
+  border-top-color: var(--candy);
+  border-right-color: var(--nCyan);
+  border-left-color: var(--lime);
+  border-radius: 50%;
+  height: 12px;
+  margin: auto;
+  width: 12px;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.tracer-unread-glow {
+  > button > i {
+    border-radius: 50%;
+    animation: tracer-pulse 1.5s ease-in-out infinite;
+  }
+}
+
+@keyframes tracer-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 8px 4px rgba(0, 229, 255, 0.5);
+  }
 }

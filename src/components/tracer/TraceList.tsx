@@ -1,8 +1,8 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { ActionButton, useTracerStore } from '@bka-stuff/pe-mfe-utils';
 import TracePoller from './TracePoller';
 import TraceEntry from './TraceEntry';
-import type { DisplayTrace, Span } from './types';
+import { DisplayTrace, Span } from './types';
 
 type Trace = DisplayTrace['trace'];
 
@@ -10,18 +10,14 @@ const TraceList: FC = () => {
   const { traces, removeTraceId } = useTracerStore();
   const [displayTraces, setDisplayTraces] = useState<DisplayTrace[]>([]);
   const [expanded, setExpanded] = useState(false);
-  const [showCallout, setShowCallout] = useState(false);
-  const hasShownCallout = useRef(false);
+  const [hasUnread, setHasUnread] = useState(false);
 
   useEffect(() => {
     setDisplayTraces((prev) => {
       const existingIds = new Set(prev.map((d) => d.trace.id));
       const incoming = traces.filter((t) => !existingIds.has(t.id));
       if (!incoming.length) return prev;
-      if (prev.length === 0 && !hasShownCallout.current) {
-        hasShownCallout.current = true;
-        setShowCallout(true);
-      }
+      setHasUnread(true);
       return [
         ...incoming.map((t) => ({
           trace: t,
@@ -32,12 +28,6 @@ const TraceList: FC = () => {
       ];
     });
   }, [traces]);
-
-  useEffect(() => {
-    if (!showCallout) return;
-    const timer = setTimeout(() => setShowCallout(false), 4000);
-    return () => clearTimeout(timer);
-  }, [showCallout]);
 
   function handleSpansUpdate(traceId: string, spans: Span[]) {
     setDisplayTraces((prev) => prev.map((d) => (d.trace.id === traceId ? { ...d, spans } : d)));
@@ -57,16 +47,12 @@ const TraceList: FC = () => {
     removeTraceId(trace);
   }
 
+  function handleExpand() {
+    setExpanded(!expanded);
+    setHasUnread(false);
+  }
+
   return (
-    <>
-      {showCallout && (
-        <button
-          onClick={() => setShowCallout(false)}
-          className="tw:fixed tw:right-[72px] tw:top-[80px] tw:z-20 tw:bg-surface tw:border tw:border-greenBorder tw:rounded-lg tw:px-3 tw:py-2 tw:text-sm tw:text-primary tw:shadow-lg tw:cursor-pointer tw:text-left tw:max-w-[220px] tw:leading-snug hover:tw:border-green tw:transition-colors"
-        >
-          Your first trace just fired! Click the icon to see live spans →
-        </button>
-      )}
     <div
       className={`tw:fixed tw:right-0 tw:top-[64px] tw:h-[calc(100vh_-_64px)] tw:bg-surface tw:border-l tw:border-purpleAlpha tw:overflow-hidden tw:transition-all tw:duration-200 tw:z-10 ${expanded ? 'tw:w-[300px]' : 'tw:w-[64px]'}`}
     >
@@ -87,13 +73,15 @@ const TraceList: FC = () => {
           className={`tw:w-full tw:h-[48px] tw:flex tw:items-center tw:text-muted hover:tw:text-primary tw:transition-colors ${expanded ? 'tw:px-3 tw:justify-between' : 'tw:justify-center'}`}
         >
           {expanded && <span className="tw:text-sm tw:font-medium">Activity</span>}
-          <ActionButton
-            iconClass={expanded ? 'fas fa-arrow-right' : 'fas fa-info-circle'}
-            title={expanded ? '' : 'view traces'}
-            size="lg"
-            color="green"
-            onClick={() => setExpanded((e) => !e)}
-          />
+          <span className={hasUnread && !expanded ? 'tracer-unread-glow' : ''}>
+            <ActionButton
+              iconClass={expanded ? 'fas fa-arrow-right' : 'fas fa-info-circle'}
+              title={expanded ? '' : 'view traces'}
+              size="lg"
+              color="green"
+              onClick={handleExpand}
+            />
+          </span>
         </span>
       </div>
 
@@ -109,7 +97,6 @@ const TraceList: FC = () => {
         </div>
       )}
     </div>
-    </>
   );
 };
 

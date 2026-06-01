@@ -1,37 +1,39 @@
-import { AxiosResponse } from 'axios';
-import BaseApi from './baseApi';
+import { axiosPublic, axiosAuth } from '../utils/authClient';
 
-class UserApi extends BaseApi {
+class UserApi {
+  axiosWithAuth;
+  axios;
+  endpoint;
   constructor() {
-    super('users');
+    this.endpoint = 'users';
+    this.axios = axiosPublic;
+    this.axiosWithAuth = axiosAuth;
   }
 
   me() {
-    return this.axiosWithAuth.get(`${this.endpoint}/me`);
+    return this.axiosWithAuth.get('users/me');
   }
 
   login(data: any) {
-    return this.axios.post(`${this.endpoint}/login`, data);
+    return this.axios.post('users/login', data);
   }
 
   logout(token: string) {
-    return this.axios.post(`/token/revoke`, null, { headers: { Authorization: `Bearer ${token}`}});
+    return this.axios.post('token/revoke', null, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
   }
 
   register(data: any) {
-    return this.axios.post(`${this.endpoint}/register`, data);
+    return this.axios.post('users/register', data);
   }
 
   updatePassword(data: any) {
-    return this.axiosWithAuth.put(`${this.endpoint}/password`, data)
+    return this.axiosWithAuth.put('users/password', data);
   }
 
   updateUser(data: any) {
-    return this.axiosWithAuth.put(`${this.endpoint}`, data);
-  }
-
-  delete(id: string): any {
-    return null; // override default delete to prevent deleting users
+    return this.axiosWithAuth.put('users', data);
   }
 }
 
