@@ -17,7 +17,7 @@ const Sidebar: FC = () => {
   const { user } = useUserStore();
 
   return (
-    <div className="shell-sidebar tw:w-[64px] tw:min-w-[64px] tw:border-r tw:border-[#BC13FE] tw:min-h-[calc(100vh_-_64px)]">
+    <div className="shell-sidebar tw:w-[64px] tw:min-w-[64px] tw:border-r tw:border-purple tw:min-h-[calc(100vh_-_64px)]">
       <SidebarButton iconClass="fas fa-home" url="dashboard" />
 
       {user ? (

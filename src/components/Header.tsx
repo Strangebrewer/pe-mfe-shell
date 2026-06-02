@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { TransparentButton, useUserStore } from '@bka-stuff/pe-mfe-utils';
+import { Button, TransparentButton, useUserStore } from '@bka-stuff/pe-mfe-utils';
 
 import LoginModal from './LoginModal';
 import { useLogout } from '../hooks/userHooks';
@@ -86,17 +86,17 @@ const Header: FC = () => {
   };
 
   return (
-    <nav className="tw:h-[64px] tw:flex tw:items-center tw:relative tw:border-b tw:border-[#BC13FE] tw:bg-[#1a0f2e]/90">
-      <h1 className="tw:mr-[96px] tw:pl-[16px] tw:text-[#f0e6ff] tw:tracking-widest tw:text-sm tw:font-light">
+    <nav className="tw:h-[64px] tw:flex tw:items-center tw:relative tw:border-b tw:border-purple tw:bg-surface">
+      <h1 className="tw:mr-[96px] tw:pl-[16px] tw:text-primary tw:tracking-widest tw:text-sm tw:font-light">
         {appName()}
       </h1>
 
       <div className="tw:flex tw:gap-[16px] tw:relative">{getHeaderLinks()}</div>
 
       {isReady ? (
-        <button className="shell-auth-btn" onClick={auth}>
-          {user ? 'Logout' : 'Login'}
-        </button>
+        <div className="tw:absolute tw:right-[16px]">
+          <Button last color="blue" text={user ? 'Logout' : 'Login'} onClick={auth} />
+        </div>
       ) : null}
       <LoginModal close={() => setShowLoginModal(false)} isOpen={showLoginModal} />
     </nav>
