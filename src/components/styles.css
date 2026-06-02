@@ -8,7 +8,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(188, 19, 254, 0.15);
+    background-color: #bc13fe26;
   }
 
   & > i {
@@ -27,7 +27,7 @@
   position: absolute;
   top: 64px;
   left: 0;
-  background-color: rgba(26, 15, 46, 0.9);
+  background-color: var(--surface);
 }
 
 .shell-auth-btn {
@@ -35,8 +35,8 @@
   right: 16px;
   padding: 6px 16px;
   background: transparent;
-  border: 1px solid #00e5ff;
-  color: #00e5ff;
+  border: 1px solid var(--nCyan);
+  color: var(--nCyan);
   cursor: pointer;
   font-size: 14px;
   letter-spacing: 0.05em;
@@ -45,7 +45,7 @@
     color 0.15s ease;
 
   &:hover {
-    background-color: #00e5ff;
+    background-color: var(--nCyan);
     color: #0d0a14;
   }
 }
