@@ -47,8 +47,8 @@ const Header: FC = () => {
             <TransparentButton
               size="lg"
               color="blue"
-              text="Shared-Hers"
-              onClick={() => navigate('/budget/categories/hers')}
+              text="Shared-Theirs"
+              onClick={() => navigate('/budget/categories/theirs')}
             />
           </>
         );
