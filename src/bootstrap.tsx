@@ -1,7 +1,6 @@
-import "@bka-stuff/pe-mfe-utils/style.css";
+import '@bka-stuff/pe-mfe-utils/style.css';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
-// import { KWThemeProvider } from '@xds-core/theme';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Shell from './Shell';
 
@@ -20,9 +19,7 @@ const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
-      {/* <KWThemeProvider> */}
       <Shell />
-      {/* </KWThemeProvider> */}
     </QueryClientProvider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );
