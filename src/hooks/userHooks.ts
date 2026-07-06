@@ -20,7 +20,7 @@ export const useLogin = () => {
     const response = await api.user.login(credentials);
     if (response?.data) {
       setUser(response.data.user);
-      authClient.setTokens(response.data.accessToken, response.data.refreshToken)
+      authClient.setTokens(response.data.accessToken, response.data.refreshToken);
     }
   }
   return [login];
@@ -30,7 +30,7 @@ export const useLogout = () => {
   const { clearUser } = useUserStore();
   async function logout() {
     try {
-      await api.user.logout(authClient.getRefreshToken() || "");
+      await api.user.logout(authClient.getRefreshToken() || '');
     } catch {
       // token already expired or revoked — treat as successful logout
     }
@@ -39,4 +39,3 @@ export const useLogout = () => {
   }
   return [logout];
 };
-

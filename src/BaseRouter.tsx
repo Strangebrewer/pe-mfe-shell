@@ -17,17 +17,21 @@ export const BaseRouter: FC = () => {
         const Component = path === bootRoutePath ? delayed : normal;
 
         const baseRoute = (
-          <Route key={path} path={path} element={
-            <Suspense fallback={<div>Loading and stuff...</div>}          >
-              <Component />
-            </Suspense>
-          } />
+          <Route
+            key={path}
+            path={path}
+            element={
+              <Suspense fallback={<div>Loading and stuff...</div>}>
+                <Component />
+              </Suspense>
+            }
+          />
         );
 
         if (path === '/dashboard/*') return baseRoute;
 
         return (
-          <Route key={path} element={<RequireAuth redirectUrl='/dashboard' />}>
+          <Route key={path} element={<RequireAuth redirectUrl="/dashboard" />}>
             {baseRoute}
           </Route>
         );
@@ -36,4 +40,4 @@ export const BaseRouter: FC = () => {
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-}
+};

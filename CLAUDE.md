@@ -11,6 +11,7 @@ The host shell. Owns the top-level layout (header, sidebar), bootstraps auth on 
 Auth state lives in `useUserStore` (Zustand) from `@bka-stuff/pe-mfe-utils`. Because pe-mfe-utils is a shared singleton in the Module Federation config, all remotes read the same store instance — no prop drilling or event bus needed.
 
 **Bootstrap flow (`Shell.tsx`):**
+
 1. Check localStorage for access/refresh tokens
 2. If tokens exist, call `GET /me` to hydrate user state
 3. If tokens absent or `/me` fails, clear tokens and user state
@@ -28,15 +29,15 @@ Token refresh is handled automatically by axios interceptors wired via `createAu
 
 Defined in `src/utils/routeUtils.ts`, rendered in `src/BaseRouter.tsx`.
 
-| Route | MFE | Protected |
-|---|---|---|
-| `/` | redirect → `/dashboard` | — |
-| `/dashboard/*` | pe-mfe-dashboard | No |
-| `/job-search/*` | pe-mfe-job-search | Yes |
-| `/budget/*` | pe-mfe-budget | Yes |
-| `/home-maintenance/*` | pe-mfe-home-maintenance | Yes |
-| `/projects/*` | pe-mfe-project-mgr | Yes |
-| `/recipes/*` | pe-mfe-recipes | Yes |
+| Route                 | MFE                     | Protected |
+| --------------------- | ----------------------- | --------- |
+| `/`                   | redirect → `/dashboard` | —         |
+| `/dashboard/*`        | pe-mfe-dashboard        | No        |
+| `/job-search/*`       | pe-mfe-job-search       | Yes       |
+| `/budget/*`           | pe-mfe-budget           | Yes       |
+| `/home-maintenance/*` | pe-mfe-home-maintenance | Yes       |
+| `/projects/*`         | pe-mfe-project-mgr      | Yes       |
+| `/recipes/*`          | pe-mfe-recipes          | Yes       |
 
 Protected routes use `<RequireAuth redirectUrl='/dashboard' />` from pe-mfe-utils.
 
@@ -90,7 +91,9 @@ All injected at build time via webpack `DefinePlugin`. Must be set as GitHub Env
 ---
 
 ## Tailwind
+
 Uses `tw:` prefix (`tw:flex`, `tw:text-sm`, etc.) — required by the MFE Tailwind config.
 
 ## pe-mfe-utils
+
 `@bka-stuff/pe-mfe-utils` is installed via `github:` URL (public tarball). Never use `pnpm link` or workspace overrides — breaks CI.
