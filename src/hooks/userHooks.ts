@@ -1,6 +1,6 @@
 import api from '../api';
 import { authClient } from '../utils/authClient';
-import { useUserStore } from '@bka-stuff/pe-mfe-utils';
+import { useUserStore, useTracerStore } from '@bka-stuff/pe-mfe-utils';
 
 export const useGetCurrentUser = () => {
   const { setUser } = useUserStore();
@@ -20,7 +20,7 @@ export const useLogin = () => {
     const response = await api.user.login(credentials);
     if (response?.data) {
       setUser(response.data.user);
-      authClient.setTokens(response.data.accessToken, response.data.refreshToken)
+      authClient.setTokens(response.data.accessToken, response.data.refreshToken);
     }
   }
   return [login];
@@ -28,15 +28,16 @@ export const useLogin = () => {
 
 export const useLogout = () => {
   const { clearUser } = useUserStore();
+  const { clearTraces } = useTracerStore();
   async function logout() {
     try {
-      await api.user.logout(authClient.getRefreshToken() || "");
+      await api.user.logout(authClient.getRefreshToken() || '');
     } catch {
       // token already expired or revoked — treat as successful logout
     }
     authClient.logout();
     clearUser();
+    clearTraces();
   }
   return [logout];
 };
-

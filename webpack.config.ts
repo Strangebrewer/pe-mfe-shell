@@ -4,7 +4,7 @@ import 'webpack-dev-server';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import { createWebpackConfig, defaultShared } from '@bka-stuff/pe-mfe-utils';
-import { fileURLToPath } from "url";
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: '.env.local' });
@@ -45,7 +45,7 @@ const config = {
 
       shared: defaultShared,
     }),
-  ]
+  ],
 } as Configuration;
 
 export default config;

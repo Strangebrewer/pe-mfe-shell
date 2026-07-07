@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { ActionButton, useTracerStore } from '@bka-stuff/pe-mfe-utils';
+import { ActionButton, useTracerStore, useUserStore } from '@bka-stuff/pe-mfe-utils';
 import TracePoller from './TracePoller';
 import TraceEntry from './TraceEntry';
 import { DisplayTrace, Span } from './types';
@@ -8,9 +8,14 @@ type Trace = DisplayTrace['trace'];
 
 const TraceList: FC = () => {
   const { traces, removeTraceId } = useTracerStore();
+  const { user } = useUserStore();
   const [displayTraces, setDisplayTraces] = useState<DisplayTrace[]>([]);
   const [expanded, setExpanded] = useState(false);
   const [hasUnread, setHasUnread] = useState(false);
+
+  useEffect(() => {
+    if (!user) setDisplayTraces([]);
+  }, [user]);
 
   useEffect(() => {
     setDisplayTraces((prev) => {

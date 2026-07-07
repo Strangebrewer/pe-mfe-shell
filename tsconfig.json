@@ -14,26 +14,19 @@
     "jsx": "react-jsx",
     "incremental": true,
     "isolatedModules": false,
-    "baseUrl": "./",
+    // "baseUrl": "./",
     "preserveSymlinks": false,
-    
+
     "paths": {
       "mfe-dashboard/*": ["./@types/mfe-dashboard/*"],
-      "mfe-job-search/*": ["./@types/mfe-job-search/*"],
+      "mfe-job-search/*": ["./@types/mfe-job-search/*"]
     },
     "types": ["node"]
   },
   "ts-node": {
     "transpileOnly": true
   },
-  "exclude": [
-    "__mocks__",
-    "node_modules",
-    "build",
-    "dist",
-    "coverage",
-    "ci-scripts"
-  ],
+  "exclude": ["__mocks__", "node_modules", "build", "dist", "coverage", "ci-scripts"],
   "include": [
     "build-utils/**/*.ts",
     "src/**/*.ts",
