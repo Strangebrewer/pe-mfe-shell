@@ -27,6 +27,7 @@ const Sidebar: FC = () => {
           <SidebarButton iconClass="fas fa-crown" url="home-maintenance" />
           <SidebarButton iconClass="fas fa-crow" url="recipes" />
           <SidebarButton iconClass="fas fa-yin-yang" url="projects" />
+          <SidebarButton iconClass="fas fa-dragon" url="stylus" />
         </>
       ) : null}
     </div>

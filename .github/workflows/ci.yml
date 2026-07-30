@@ -69,6 +69,7 @@ jobs:
           MFE_HOME_MAINTENANCE: ${{ vars.MFE_HOME_MAINTENANCE }}
           MFE_PROJECT_MGR: ${{ vars.MFE_PROJECT_MGR }}
           MFE_RECIPES: ${{ vars.MFE_RECIPES }}
+          MFE_STYLUS: ${{ vars.MFE_STYLUS }}
           TRACER_SERVICE_URL: ${{ vars.TRACER_SERVICE_URL }}
 
       - uses: google-github-actions/auth@v2
@@ -114,6 +115,7 @@ jobs:
           MFE_HOME_MAINTENANCE: ${{ vars.MFE_HOME_MAINTENANCE }}
           MFE_PROJECT_MGR: ${{ vars.MFE_PROJECT_MGR }}
           MFE_RECIPES: ${{ vars.MFE_RECIPES }}
+          MFE_STYLUS: ${{ vars.MFE_STYLUS }}
           TRACER_SERVICE_URL: ${{ vars.TRACER_SERVICE_URL }}
 
       - uses: google-github-actions/auth@v2

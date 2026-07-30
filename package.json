@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "dev": "concurrently -n shell,dashboard,job-search,budget,home-maintenance,project-mgr,recipes -c blue,green,yellow,magenta,grey,cyan,white \"pnpm start\" \"pnpm --prefix ../pe-mfe-dashboard start\" \"pnpm --prefix ../pe-mfe-job-search start\" \"pnpm --prefix ../pe-mfe-budget start\" \"pnpm --prefix ../pe-mfe-home-maintenance start\" \"pnpm --prefix ../pe-mfe-project-mgr start\" \"pnpm --prefix ../pe-mfe-recipes start\"",
+    "dev": "concurrently -n shell,dashboard,job-search,budget,home-maintenance,project-mgr,recipes,stylus -c blue,green,yellow,magenta,grey,cyan,white,blue \"pnpm start\" \"pnpm --prefix ../pe-mfe-dashboard start\" \"pnpm --prefix ../pe-mfe-job-search start\" \"pnpm --prefix ../pe-mfe-budget start\" \"pnpm --prefix ../pe-mfe-home-maintenance start\" \"pnpm --prefix ../pe-mfe-project-mgr start\" \"pnpm --prefix ../pe-mfe-recipes start\" \"pnpm --prefix ../pe-mfe-stylus start\"",
     "utils": "bash scripts/update-utils.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
