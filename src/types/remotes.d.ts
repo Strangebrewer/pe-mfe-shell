@@ -29,3 +29,8 @@ declare module 'pe-mfe-recipes/App' {
   const App: React.ComponentType;
   export default App;
 }
+
+declare module 'pe-mfe-stylus/App' {
+  const App: React.ComponentType;
+  export default App;
+}

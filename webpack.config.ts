@@ -41,6 +41,7 @@ const config = {
         'pe-mfe-home-maintenance': `pe_mfe_home_maintenance@${process.env.MFE_HOME_MAINTENANCE}/remoteEntry.js`,
         'pe-mfe-project-mgr': `pe_mfe_project_mgr@${process.env.MFE_PROJECT_MGR}/remoteEntry.js`,
         'pe-mfe-recipes': `pe_mfe_recipes@${process.env.MFE_RECIPES}/remoteEntry.js`,
+        'pe-mfe-stylus': `pe_mfe_stylus@${process.env.MFE_STYLUS}/remoteEntry.js`,
       },
 
       shared: defaultShared,

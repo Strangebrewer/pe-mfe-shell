@@ -67,6 +67,10 @@ export const routes: RouteDefinition[] = [
     path: '/recipes/*',
     ...buildLazyImports(() => import('pe-mfe-recipes/App'), MINIMUM_LOAD_DELAY),
   },
+  {
+    path: '/stylus/*',
+    ...buildLazyImports(() => import('pe-mfe-stylus/App'), MINIMUM_LOAD_DELAY),
+  },
 ];
 
 export const bootRoutePath =

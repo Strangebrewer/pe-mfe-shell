@@ -80,6 +80,8 @@ const Header: FC = () => {
         return 'RECIPES';
       case path.startsWith('/projects'):
         return 'PROJECTS';
+      case path.startsWith('/stylus'):
+        return 'STYLUS';
       default:
         return '~ NARF! ~';
     }
