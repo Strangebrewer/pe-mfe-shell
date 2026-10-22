@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The host shell. Owns the top-level layout (header, sidebar), bootstraps auth on page load, and orchestrates all six remote MFEs via Webpack Module Federation. Port: 3000.
+The host shell. Owns the top-level layout (header, sidebar), bootstraps auth on page load, and orchestrates all seven remote MFEs via Webpack Module Federation. Port: 3000.
 
 ---
 
@@ -38,6 +38,7 @@ Defined in `src/utils/routeUtils.ts`, rendered in `src/BaseRouter.tsx`.
 | `/home-maintenance/*` | pe-mfe-home-maintenance | Yes       |
 | `/projects/*`         | pe-mfe-project-mgr      | Yes       |
 | `/recipes/*`          | pe-mfe-recipes          | Yes       |
+| `/stylus/*`           | pe-mfe-stylus           | Yes       |
 
 Protected routes use `<RequireAuth redirectUrl='/dashboard' />` from pe-mfe-utils.
 
@@ -56,6 +57,7 @@ pe_mfe_job_search       → MFE_JOB_SEARCH_URL/remoteEntry.js
 pe_mfe_home_maintenance → MFE_HOME_MAINTENANCE/remoteEntry.js
 pe_mfe_project_mgr      → MFE_PROJECT_MGR/remoteEntry.js
 pe_mfe_recipes          → MFE_RECIPES/remoteEntry.js
+pe_mfe_stylus           → MFE_STYLUS/remoteEntry.js
 ```
 
 Remotes are consumed via `React.lazy(() => import('pe-mfe-<name>/App'))`. Each remote must default-export a React component.
@@ -66,7 +68,7 @@ Shared dependencies are configured via `defaultShared` from pe-mfe-utils. Never 
 
 ## Sidebar
 
-`src/components/Sidebar.tsx` reads `user` from `useUserStore`. The dashboard icon is always visible. All other nav links (job-search, budget, home-maintenance, recipes, projects) are conditionally rendered only when `user` is set.
+`src/components/Sidebar.tsx` reads `user` from `useUserStore`. The dashboard icon is always visible. All other nav links (job-search, budget, home-maintenance, recipes, projects, stylus) are conditionally rendered only when `user` is set.
 
 ---
 
@@ -79,6 +81,7 @@ Shared dependencies are configured via `defaultShared` from pe-mfe-utils. Never 
 - `MFE_HOME_MAINTENANCE` — home maintenance MFE (default: `http://localhost:3004`)
 - `MFE_PROJECT_MGR` — project manager MFE (default: `http://localhost:3005`)
 - `MFE_RECIPES` — recipes MFE (default: `http://localhost:3006`)
+- `MFE_STYLUS` — stylus MFE (default: `http://localhost:3007`)
 
 All injected at build time via webpack `DefinePlugin`. Must be set as GitHub Environment vars to take effect in CI builds.
 
@@ -86,7 +89,7 @@ All injected at build time via webpack `DefinePlugin`. Must be set as GitHub Env
 
 ## Local Dev
 
-`pnpm dev` from this directory starts all seven apps concurrently (shell + all six MFEs) via `concurrently`.
+`pnpm dev` from this directory starts all eight apps concurrently (shell + all seven MFEs) via `concurrently`.
 
 ---
 
